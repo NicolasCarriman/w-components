@@ -1,6 +1,6 @@
-body {
-  background-color: rgb(202, 202, 202);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .card {
   background-color: white;
@@ -15,7 +15,13 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
+    article {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
     article > * {
       font-size: .8rem;
     }

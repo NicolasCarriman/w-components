@@ -11,11 +11,11 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + TS</title>
+  <title>Test Web App</title>
 </head>
 
-<body>
-  <template id="card-template" >
+<body class="bg-light-100 flex flex-col items-center h-[100dvh]">
+  <template id="card-template">
     <link rel="stylesheet" href="/src/style.css" />
     <div class="card">
       <article class="card-content">
@@ -31,16 +31,48 @@
             <span class="roboto-regular tag">Tag2</span>
           </div>
         </article>
-        <article class="card-action">1
+        <article class="card-action">
           <span class="roboto-regular">Action</span>
           <button class="roboto-regular">Contact</button>
         </article>
       </div>
     </div>
   </template>
+  <header class="relative flex flex-row justify-between max-w-6xl w-full p-4 pb-8 px-12 rounded border-b border-gray-300 ">
+    <ul class="flex flex-row no-underline gap-12">
+      <li class="flex items-center gap-2 cursor-pointer"><a class="hover:text-primary">About</a></li>
+      <li class="flex items-center gap-2 cursor-pointer">
+        <dropdown-component title="Products">
+          <a slot="content-slot">testes</a>
+          <a slot="content-slot">testes</a>
+          <a slot="content-slot">testes</a>
+          <a slot="content-slot">testes</a>
+        </dropdown-component>
+      </li>
+      <li class="flex items-center gap-2 cursor-pointer"><a class="hover:text-primary">Media</a></li>
+      <li class="flex items-center gap-2 cursor-pointer"><a class="hover:text-primary">Blog</a></li>
+    </ul>
+    <button class="border border-primary py-2 text-primary transition-all duration-100 rounded font-normal w-40 hover:bg-primary hover:text-neutral-50">Sign in</button>
+  </header>
+  <div id="app" class="h-full p-12">
+    <article class="max-w-7xl h-auto w-[100%] px-8 flex flex-row gap-12 justify-between items-end">
+      <h1 class="text-dark font-bold text-8xl py-4">Product & Market Research Hub</h1>
+      <br />
+      <article class="max-w-[50%] py-4 flex flex-col gap-12 items-start">
+        <p class="text-gray-600 text-3xl w-full">
+          Upgrade your market research.
+          <span class="text-primary font-medium ">Get powerful</span>
+          detailed insights on products and markets to
+          <span class="text-primary  font-medium ">improve decision-making</span>
+          , discover trends, and better understand your customers.
+        </p>
+        <button class="border border-primary px-8 py-4 text-2xl text-primary transition-all duration-100 rounded font-normal w-72 hover:bg-primary hover:text-neutral-50">Get Started</button>
+      </article>
+    </article>
+    <h3 class="mt-1 px-8 text-gray-500">Insights for Informed Decisions</h3>
+    <section>
 
-  <div id="app">
-
+    </section>
   </div>
   <script type="module" src="/src/scripts/index.ts"></script>
 </body>
