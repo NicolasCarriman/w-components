@@ -1,5 +1,9 @@
-const content = `<div class='overflow-hidden flex flx-col'>
+const content = `
+<link rel="stylesheet" href="/src/style.css" />
+<div class="overflow-hidden flex max-h-[1.5rem] ">
+  <div id="sliderY" class="flex flex-col justify-start hover:animate-slideY">
     <slot name="slider-content-slot"></slot>
+  </div>
 </div>`;
 
 class CustomSlider extends HTMLElement {
@@ -19,7 +23,6 @@ class CustomSlider extends HTMLElement {
     const parent = slot.parentElement as HTMLDivElement;
     clonedLabel.textContent = labelContent.textContent;
     parent.appendChild(clonedLabel);
-
 
   }
 

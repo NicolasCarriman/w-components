@@ -1,11 +1,11 @@
 
 const templateContent = `
 <link rel="stylesheet" href="/src/style.css" />
-<div class="background" id="ddBackground"></div>
+<div class=" w-[100vw] h-[100dvh] absolute top-[50%] left-[50%] transform:translate(-50%, -50%) backdrop-blur-sm backdrop-brightness-50 bg-white/50	" id="ddBackground"></div>
 <div class="flex flex-col items-center w-full">
   <label class="label flex flex-row items-center gap-2 hover:text-primary cursor-pointer" >
 		<slot name="label-slot"></slot>
-		<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg id="ddArrow" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 0.734863L4.99999 4.73486L1 0.734863" stroke="currentColor" stroke-width="1.48148"
           stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
@@ -16,7 +16,7 @@ const templateContent = `
 </div>`;
 
 class CustomDropdown extends HTMLElement {
-	private _parentId: null | string = null;
+	private parentId: null | string = null;
 
 	constructor() {
 		super();
@@ -62,15 +62,15 @@ class CustomDropdown extends HTMLElement {
 		const parentId = this.getAttribute('parentId');
 		if (!parentId) throw new Error('Parent must be provided as attribute in the web component');
 
-		this._parentId = parentId;
-		this._attachParent();
+		this.parentId = parentId;
+		this.attachParent();
 
 	}
 
-	_attachParent() {
+	attachParent() {
 
-		if (!this._parentId) throw new Error('Parent must be provided as attribute in the web component');
-		const parentElement = document.getElementById(this._parentId);
+		if (!this.parentId) throw new Error('Parent must be provided as attribute in the web component');
+		const parentElement = document.getElementById(this.parentId);
 
 		function hideContent(this: CustomDropdown) {
 
@@ -88,9 +88,27 @@ class CustomDropdown extends HTMLElement {
 
 		}
 
+    function rotateArrow(this: CustomDropdown) {
+      const arrowEl = this.shadowRoot?.querySelector("#ddArrow") as HTMLElement;
+      const isActive = arrowEl.classList.contains('animate-rotate');
+      
+      if (isActive) {
+        arrowEl.classList.remove('animate-rotate');
+        return;
+      }
+
+      arrowEl.classList.add('animate-rotate');
+    }
+
+    function onMouseLeave(this: CustomDropdown) {
+      rotateArrow.bind(this)();
+      hideContent.bind(this)();
+    }
+
 		if (parentElement) {
 
-			parentElement.addEventListener('mouseleave', hideContent.bind(this));
+      parentElement.addEventListener('mouseenter', rotateArrow.bind(this));
+			parentElement.addEventListener('mouseleave', onMouseLeave.bind(this));
 
 		}
 

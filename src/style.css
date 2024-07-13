@@ -2,45 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.card {
-  background-color: white;
-  max-width: 12em;
-  padding: 1em;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  .card-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    article {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    article > * {
-      font-size: .8rem;
-    }
-
-    .card-action {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-}
-
-
 .c-description {
   color: rgb(141, 141, 141);
   font-size: .7rem;
