@@ -14,13 +14,18 @@ export default {
         }
       },
       animation: {
-        'zoom': 'zoom-in .8s',
+        'zoom': 'zoom-in .6s',
+        'slideY': 'slide-y .6s ease-in'
       },
       keyframes: {
         "zoom-in": {
           '0%': { transform: 'translateY(-50%)', opacity: 0},
           '100%': { transform: 'translateY(0%)', opacity: 1}
-        } 
+        },
+        "slide-y": {
+          '0%': { transform: 'translateY(50%)' },
+          '100%': { transform: 'translateY(0%)' }
+        }
       }
     },
   },
