@@ -1,7 +1,6 @@
 
 const templateContent = `
 <link rel="stylesheet" href="/src/style.css" />
-<div class=" w-[100vw] h-[100dvh] absolute top-[50%] left-[50%] transform:translate(-50%, -50%) backdrop-blur-sm backdrop-brightness-50 bg-white/50	" id="ddBackground"></div>
 <div class="flex flex-col items-center w-full">
   <label class="label flex flex-row items-center gap-2 hover:text-primary cursor-pointer" >
 		<slot name="label-slot"></slot>
@@ -10,7 +9,7 @@ const templateContent = `
           stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
   </label>
-  <div class="flex-col mt-16 hidden relative bg-primary text-white p-2 rounded gap-2 w-full left-[0%] items-center" id="ddContent">
+  <div class="flex-col mt-16 hidden relative background text-white p-2 rounded gap-2 w-full left-[0%] items-center" id="ddContent">
     <slot name="content-slot" ></slot>
   </div>
 </div>`;
@@ -28,11 +27,10 @@ class CustomDropdown extends HTMLElement {
 		const node = document.importNode(template.content, true);
 		shadowRoot.appendChild(node);
 
-		const background = shadowRoot.querySelector('#ddBackground');
 		const label = shadowRoot.querySelector('slot[name="label-slot"]') as HTMLSlotElement;
 		const content = shadowRoot.querySelector('#ddContent');
 
-		if (!content || !label || !background) throw new Error("please provide ddLabel or ddBackground or ddContent ");
+		if (!content || !label ) throw new Error("please provide ddLabel or ddContent ");
 		label.textContent = this.title;
 		const labelContainer = label.parentElement;
 		if (!labelContainer) return;
