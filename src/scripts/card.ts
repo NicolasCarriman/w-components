@@ -7,7 +7,6 @@ class CustomCard extends HTMLElement {
     const template = document.getElementById('card-template') as HTMLTemplateElement;
     const node = document.importNode(template.content, true);
     const shadowRoot = this.attachShadow({ mode: "open" });
-    console.log(template)
     shadowRoot.appendChild(node);
 
   }

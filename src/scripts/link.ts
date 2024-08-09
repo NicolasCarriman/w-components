@@ -1,7 +1,6 @@
+import { INavigationDetailEvent } from "../types";
 
 class CustomAnchor extends HTMLElement {
-
-    href: null | string = null;
 
     constructor() {
         super();
@@ -14,28 +13,28 @@ class CustomAnchor extends HTMLElement {
         if (!href) throw new Error("attribute href not inserted")
 
         link.classList.add('border', 'flex', 'cursor-pointer', 'border-primary', 'py-1', 'text-primary', 'transition-all', 'duration-100', 'rounded', 'font-normal', 'w-40', 'hover:bg-primary', 'justify-center', 'hover:text-neutral-50');
-        this.href = href;
+        link.href = href;
         link.innerHTML = this.innerHTML;
-
         link.addEventListener('click', e => this.handleClick.bind(this)(e));
         this.innerHTML = '';
         this.appendChild(link);
     }
 
-    navigate() {
-        const navigateEvent = new CustomEvent('route-navigate', {
-            detail: { href: this.href },
+    navigate(url: URL) {
+        const navigateEvent = new CustomEvent<INavigationDetailEvent>('route-navigate', {
+            detail: { url: url },
             bubbles: true,
             composed: true
         });
         this.dispatchEvent(navigateEvent)
+        window.history.pushState({}, '', url);
     }
 
     handleClick(this: CustomAnchor, e: MouseEvent) {
         e.preventDefault();
-        if (!this.href) return;
-
-        this.navigate();
+        const target = e.target as HTMLAnchorElement;
+        const url = new URL(target.href);
+        this.navigate(url);
     }
 
 }

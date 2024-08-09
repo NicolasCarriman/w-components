@@ -14,7 +14,7 @@
   <title>Test Web App</title>
 </head>
 
-<body class="bg-light-100 flex flex-col items-center h-[100dvh]">
+<body id="bodyPage" class="bg-light-100 flex flex-col items-center h-[100dvh]">
 
   <template id="card-template">
     <link rel="stylesheet" href="/src/style.css" />
@@ -80,29 +80,7 @@
       class="border cursor-pointer border-primary py-2 text-primary transition-all duration-100 rounded font-normal w-40 hover:bg-primary hover:text-neutral-50">Sign
       in</button>
   </header>
-
   <div id="app" class="h-full p-12">
-    <article class="max-w-7xl h-auto w-[100%] px-8 flex flex-row gap-12 justify-between items-end">
-      <h1 class="text-dark font-bold text-8xl py-4">Product & Market Research Hub</h1>
-      <br />
-      <article class="max-w-[50%] py-4 flex flex-col gap-12 items-start">
-        <p class="text-gray-600 text-3xl w-full">
-          Upgrade your market research.
-          <span class="text-primary font-medium ">Get powerful</span>
-          detailed insights on products and markets to
-          <span class="text-primary  font-medium ">improve decision-making</span>
-          , discover trends, and better understand your customers.
-        </p>
-        <button
-          class="border cursor-pointer border-primary px-8 py-4 text-2xl text-primary transition-all duration-100 rounded font-normal w-72 hover:bg-primary hover:text-neutral-50">Get
-          Started</button>
-      </article>
-    </article>
-    <h3 class="mt-1 px-8 text-gray-500">Insights for Informed Decisions</h3>
-    <section>
-
-    </section>
-  </div>
   <script type="module" src="/src/scripts/index.ts"></script>
 </body>
 

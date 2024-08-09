@@ -14,7 +14,6 @@ export const getKeywordData = async ({ key, country }: { key: string, country: s
     try {
         const response = await fetch(url, options);
         const result = await response.text();
-        console.log(result);
     } catch (error) {
         console.error(error);
     }
