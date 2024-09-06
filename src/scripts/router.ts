@@ -37,7 +37,7 @@ function getPathNameArr(pathname: string) {
 function getRoutePath(pathname: string) {
 
     const pathArray = getPathNameArr(pathname);
-    
+
     function currentRoute(pathArray: string[], router: Route[]) {
 
         const mappedRouter = new Map(router.map(r => [r.path, r]));
@@ -61,6 +61,10 @@ function getRoutePath(pathname: string) {
     return fileUrl;
 }
 
+const renderEvent = (pageName: string) => new CustomEvent("render", {
+    detail: pageName
+});
+
 async function renderPage(url: URL) {
 
     const currentFileRoute = getRoutePath(url.pathname);
@@ -69,15 +73,16 @@ async function renderPage(url: URL) {
     const dom = new DOMParser().parseFromString(htmlElement, 'text/html');
     const domBody = dom.documentElement.querySelector('body');
     if (!appContainer || !domBody) throw new Error('Body element not found');
-    
+
     const nodes = Array.from(domBody.children);
     appContainer.innerHTML = ''
 
-    for ( let node in nodes) {
+    for (let node in nodes) {
         const currentNode = nodes[node];
         appContainer.appendChild(currentNode);
     }
 
+    window.dispatchEvent(renderEvent(url.pathname.split("/").reverse()[0]));
 }
 
 async function handleRouter(url: URL) {

@@ -12,7 +12,7 @@ class CustomSlider extends HTMLElement {
     super();
 		const template = document.createElement('template') as HTMLTemplateElement;
 		template.innerHTML = content;
-  
+    
 		const shadowRoot = this.attachShadow({ mode: 'open' });
 		const node = document.importNode(template.content, true);
 		shadowRoot.appendChild(node);

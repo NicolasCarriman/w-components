@@ -13,9 +13,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Test Web App</title>
 </head>
+<script type="module" src="/src/scripts/index.ts"></script>
 
-<body id="bodyPage" class="bg-light-100 flex flex-col items-center h-[100dvh]">
-
+<body id="bodyPage" class="bg-light-100 flex flex-col items-center h-[100dvh] opacity-0">
   <template id="card-template">
     <link rel="stylesheet" href="/src/style.css" />
     <div class="w-full max-w-80 bg-stone-100 rounded p-4 flex flex-col gap-4">
@@ -46,24 +46,27 @@
         </slider-component>
       </li>
       <li class="flex items-center gap-2 cursor-pointerZ">
+
         <dropdown-component title="Products" parentId="headerNavbar">
           <slider-component slot="label-slot">
             <a slot="slider-content-slot">Products</a>
           </slider-component>
           <div slot="content-slot" class="flex flex-row gap-12 justify-start">
+
             <card-component>
               <label class="text-2xl" slot="card-name">Analysis Tool</label>
-              <label class="text-base" slot="card-description">Use our tools to identify market trends and adjust your strategies accordingly.</label>
-              <label slot="card-tag" class="bg-dark text-neutral-50 p-2 rounded font-light text-xs">Search Volume</label>
+              <label class="text-base" slot="card-description">Use our tools to identify market trends and adjust your
+                strategies accordingly.</label>
+              <label slot="card-tag" class="bg-dark text-neutral-50 p-2 rounded font-light text-xs">Search
+                Volume</label>
               <label slot="card-tag" class="bg-dark text-neutral-50 p-2 rounded font-light text-xs">Geo-Location</label>
-              <label slot="card-tag" class="bg-dark text-neutral-50 p-2 rounded font-light text-xs">Social Media</label>  
-              <anchor-component slot="card-action"  href="/tools/analysis"  href="\test\2" >Try Now!</anchor-component>
+              <label slot="card-tag" class="bg-dark text-neutral-50 p-2 rounded font-light text-xs">Social Media</label>
+              <anchor-component slot="card-action" href="/tools/analysis">Try Now!</anchor-component>
             </card-component>
-            <card-component>test</card-component>
-            <card-component>test</card-component>
-            <card-component>test</card-component>
+
           </div>
         </dropdown-component>
+
       </li>
       <li class="flex items-center gap-2 cursor-pointer">
         <slider-component>
@@ -76,12 +79,17 @@
         </slider-component>
       </li>
     </ul>
-    <button
-      class="border cursor-pointer border-primary py-2 text-primary transition-all duration-100 rounded font-normal w-40 hover:bg-primary hover:text-neutral-50">Sign
-      in</button>
+    <button class="border cursor-pointer border-primary py-2 text-primary transition-all duration-100 rounded font-normal w-40 hover:bg-primary hover:text-neutral-50">Sign in</button>
   </header>
-  <div id="app" class="h-full p-12">
-  <script type="module" src="/src/scripts/index.ts"></script>
+  <div id="app" class="h-full max-h-[27rem] p-12 flex flex-row">
+
+  </div>
 </body>
+<script type="module" src="/src/pages/analysis.ts"></script>
+<script>
+  window.onload = () => {
+    document.getElementById("bodyPage").classList.remove("opacity-0");
+  }
+</script>  
 
 </html>

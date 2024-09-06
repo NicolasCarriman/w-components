@@ -12,7 +12,7 @@ export async function fetchData(url: string, method: string, data?: any): Promis
 
   const fetchData = fetch(request)
     .then(response => {
-      return response.json() as Promise<unknown>;
+      return response.text();
     })
     .catch((err) => {
       throw new Error('Error on fetching report :' + err)

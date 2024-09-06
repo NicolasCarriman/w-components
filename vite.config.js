@@ -5,6 +5,6 @@ dns.setDefaultResultOrder('verbatim')
 
 export default defineConfig({
   server: {
-    port: 2500
+    port: 2333
   }
 });

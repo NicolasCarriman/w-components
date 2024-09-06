@@ -7,6 +7,8 @@
   font-size: .7rem;
 }
 
+*:not(:defined) { display: none; }
+
 .tag {
   background-color: rgb(210, 229, 243);
   padding: .2rem;

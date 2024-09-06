@@ -1,4 +1,3 @@
-
 const templateContent = `
 <link rel="stylesheet" href="/src/style.css" />
 <div class="flex flex-col items-center w-full">

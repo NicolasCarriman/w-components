@@ -13,6 +13,7 @@ export const getKeywordData = async ({ key, country }: { key: string, country: s
 
     try {
         const response = await fetch(url, options);
+        //@ts-ignore
         const result = await response.text();
     } catch (error) {
         console.error(error);
