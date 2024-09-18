@@ -13,10 +13,6 @@ const router: Array<Route> = [
             path: '/analysis',
             urlContent: '/pages/tools/analysis.html'
         }
-    },
-    {
-        path: '/',
-        urlContent: '/pages/home/home.html'
     }
 ];
 
@@ -56,7 +52,7 @@ function getRoutePath(pathname: string) {
     }
 
     const fileUrl = currentRoute(pathArray, router);
-    if (!fileUrl) throw new Error('Error: current route not found, route name :' + pathname);
+    if (!fileUrl) return null;
 
     return fileUrl;
 }
@@ -65,9 +61,7 @@ const renderEvent = (pageName: string) => new CustomEvent("render", {
     detail: pageName
 });
 
-async function renderPage(url: URL) {
-
-    const currentFileRoute = getRoutePath(url.pathname);
+async function renderPage(currentFileRoute: string) {
     const file = fetch(new URL(origin + currentFileRoute)).then(r => r.text());
     const htmlElement = await file;
     const dom = new DOMParser().parseFromString(htmlElement, 'text/html');
@@ -75,18 +69,26 @@ async function renderPage(url: URL) {
     if (!appContainer || !domBody) throw new Error('Body element not found');
 
     const nodes = Array.from(domBody.children);
-    appContainer.innerHTML = ''
+    appContainer.innerHTML = '';
 
     for (let node in nodes) {
         const currentNode = nodes[node];
         appContainer.appendChild(currentNode);
     }
-
-    window.dispatchEvent(renderEvent(url.pathname.split("/").reverse()[0]));
 }
 
 async function handleRouter(url: URL) {
-    renderPage(url);
+    const currentFileRoute = getRoutePath(url.pathname);
+    if (!appContainer) throw new Error('App container with id "app" not found');
+    if (!currentFileRoute) return;
+
+    appContainer.innerHTML = ""; 
+
+    const analisysHtml = fetch('./pages/analysis.html').then((res) => res.text());
+    console.log(await analisysHtml);
+
+    renderPage(currentFileRoute);
+    window.dispatchEvent(renderEvent(url.pathname.split("/").reverse()[0]));
 };
 
 window.addEventListener('load', () => {
@@ -95,7 +97,7 @@ window.addEventListener('load', () => {
 });
 
 document.addEventListener('route-navigate', (e: any) => {
-    const detail: INavigationDetailEvent = e.detail;
+    const detail: INavigationDetailEvent = e.detail; 
     handleRouter(detail.url);
 });
 

@@ -6,7 +6,7 @@ const content = `
   </div>
 </div>`;
 
-class CustomSlider extends HTMLElement {
+export class CustomSlider extends HTMLElement {
 
   constructor() {
     super();
